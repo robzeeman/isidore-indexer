@@ -1,2 +1,2 @@
-# soundtoll-indexer
-Indexer for ElasticSearch, using the Soundtoll database
+# Isidore-indexer
+Indexer for ElasticSearch, using the Isidore database
