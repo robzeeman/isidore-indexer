@@ -1,0 +1,390 @@
+{
+  "mappings": {
+    "properties": {
+      "fulltext": {
+        "type": "text"
+      },
+      "id": {
+        "type": "text",
+        "copy_to": "fulltext"
+      },
+      "shelfmark": {
+        "type": "text",
+        "copy_to": "fulltext",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "bischoff": {
+        "type": "text",
+        "copy_to": "fulltext"
+      },
+      "cla": {
+        "type": "text",
+        "copy_to": "fulltext"
+      },
+      "certainty": {
+        "type": "text"
+      },
+      "no_of_folia": {
+        "type": "text"
+      },
+      "page_height_min": {
+        "type": "text"
+      },
+      "page_width_min": {
+        "type": "text"
+      },
+      "books_latin": {
+        "type": "text",
+        "copy_to": "fulltext",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "excluded": {
+        "type": "text",
+        "copy_to": "fulltext",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "digitized": {
+        "type": "text",
+        "copy_to": "fulltext",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "has_easter_tables": {
+        "type": "text",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "easter_tables": {
+        "type": "nested",
+        "properties": {
+          "place": {
+            "type": "text",
+            "copy_to": "fulltext",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      },
+      "has_interpolations": {
+        "type": "text",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "interpolations": {
+        "type": "nested",
+        "properties": {
+          "place": {
+            "type": "text",
+            "copy_to": "fulltext",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      },
+      "has_annotations": {
+        "type": "text",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "annotations": {
+        "type": "nested",
+        "properties": {
+          "place": {
+            "type": "text",
+            "copy_to": "fulltext",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      },
+      "has_diagrams": {
+        "type": "text",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "diagrams": {
+        "type": "nested",
+        "properties": {
+          "place": {
+            "type": "text",
+            "copy_to": "fulltext",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      },
+      "has_innovations": {
+        "type": "text",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "has_relations": {
+        "type": "text",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "part": {
+        "type": "text",
+        "copy_to": "fulltext",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "additional_content_scaled": {
+        "type": "text"
+      },
+      "current_places": {
+        "type": "nested",
+        "properties": {
+          "place": {
+            "type": "text",
+            "copy_to": "fulltext",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      },
+      "absolute_places": {
+        "type": "nested",
+        "properties": {
+          "place_absolute": {
+            "type": "text",
+            "copy_to": "fulltext",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          },
+          "country": {
+            "type": "text",
+            "copy_to": "fulltext",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          },
+          "latitude": {
+            "type": "text"
+          },
+          "longitude": {
+            "type": "text"
+          },
+          "certainty": {
+            "type": "text"
+          }
+        }
+      },
+      "physical_state": {
+        "type": "text",
+        "copy_to": "fulltext",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "scaled_places": {
+        "type": "nested",
+        "properties": {
+          "place": {
+            "type": "text",
+            "copy_to": "fulltext",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          },
+          "latitude": {
+            "type": "text"
+          },
+          "longitude": {
+            "type": "text"
+          }
+        }
+      },
+      "scaled_dates": {
+        "type": "nested",
+        "properties": {
+          "date": {
+            "type": "text",
+            "copy_to": "fulltext",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          },
+          "lower": {
+            "type": "integer"
+          },
+          "upper": {
+            "type": "integer"
+          }
+        }
+      },
+      "script": {
+        "type": "text",
+        "copy_to": "fulltext",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "material_types": {
+        "type": "nested",
+        "properties": {
+          "material_type": {
+            "type": "text",
+            "copy_to": "fulltext",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      },
+      "sources_of_dating": {
+        "type": "nested",
+        "properties": {
+          "source_of_dating": {
+            "type": "text",
+            "copy_to": "fulltext",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      },
+      "designed_as": {
+        "type": "text",
+        "copy_to": "fulltext",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "authors": {
+        "type": "nested",
+        "properties": {
+          "author": {
+            "type": "text",
+            "copy_to": "fulltext",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      },
+      "page_dimensions": {
+        "type": "text",
+        "copy_to": "fulltext",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "content_type": {
+        "type": "text",
+        "copy_to": "fulltext",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "layout": {
+        "type": "text",
+        "copy_to": "fulltext",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "provenances": {
+        "type": "nested",
+        "properties": {
+          "provenance": {
+            "type": "text",
+            "copy_to": "fulltext",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      },
+      "image": {
+        "type": "text",
+        "copy_to": "fulltext",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  }
+}
