@@ -11,7 +11,7 @@ class db
 
     function get_manuscripts($count)
     {
-        $result = pg_query($this->con, "SELECT id, shelfmark, bischoff, cla, material_type, no_of_folia, page_height_min, page_width_min, additional_content_scaled, columns,  innovations, collection_larger_unit FROM manuscripts LIMIT $count");
+        $result = pg_query($this->con, "SELECT id, shelfmark, bischoff, cla, material_type, no_of_folia, page_height_min, page_width_min, additional_content_scaled, physical_state_scaled physical_state, columns,  REPLACE (innovations, '&amp;', '&') as innovations, collection_larger_unit FROM manuscripts LIMIT $count");
         return $this->ass_arr($result);
     }
 
@@ -36,7 +36,7 @@ class db
     }
 
     function get_current_places($id) {
-        $result = pg_query($this->con, "SELECT current_place place FROM manuscript_current_places WHERE m_id = '$id'");
+        $result = pg_query($this->con, "SELECT place_name place FROM manuscripts m, manuscript_current_places ml, library l WHERE m.id ='$id' AND m.id = ml.m_id AND ml.lib_id = l.lib_id");
         return $this->ass_arr($result);
     }
 
@@ -67,7 +67,7 @@ class db
     }
 
     function getAmountDigitized($id) {
-        $result = $this->ass_arr(pg_query($this->con, "select count(*) as aantal from url where id = '$id' AND url_images IS NOT NULL"));
+        $result = $this->ass_arr(pg_query($this->con, "select count(*) as aantal from url where m_id = '$id' AND url_images IS NOT NULL"));
         return $result[0]["aantal"];
     }
 
@@ -84,7 +84,7 @@ class db
 
     function get_library($id)
     {
-        $result = pg_query($this->con, "SELECT lib_name, latitude, longitude, place_name FROM manuscripts m, manuscripts_library ml, library l WHERE m.id ='$id' AND m.id = ml.m_id AND ml.lib_id = l.lib_id");
+        $result = pg_query($this->con, "SELECT lib_name, latitude, longitude, place_name FROM manuscripts m, manuscript_current_places ml, library l WHERE m.id ='$id' AND m.id = ml.m_id AND ml.lib_id = l.lib_id");
         return $this->ass_arr($result);
     }
 

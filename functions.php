@@ -56,11 +56,11 @@ function publish($passage, $url)
 function indexManuscripts($count)
 {
     global $db;
-    //put_mapping();
+    put_mapping();
     $manuscripts = $db->get_manuscripts($count);
     foreach ($manuscripts as $manuscript) {
         $item = build_item($manuscript);
-        //publish($item, INDEX_URL);
+        publish($item, INDEX_URL);
         //print_r($item);
     }
 }
@@ -83,7 +83,8 @@ function build_item($manuscript)
     $item["scaled_dates"] = simplify_dates($db->get_scaled_dates($id));
     $item["designed_as"] = $db->get_designed_as($id);
     $item["page_dimensions"] = $db->get_page_dimensions($id);
-    $item["physical_state"] = $db->get_physical_state($id);
+    //$item["physical_state"] = $db->get_physical_state($id);
+    $item["physical_state"] = $manuscript["physical_state"];
     $item["layout"] = get_layout($manuscript["columns"]);
     //$item["provenance"] = process_str($manuscript["provenance"]);
     $item["provenances"] = $db->get_provenances($id);
@@ -131,7 +132,7 @@ function build_item($manuscript)
 
     // Interpolations
     $values = $db->getInterpolations($id);
-    if (isset($values[0]["easter_table_type"])) {
+    if (isset($values[0]["interpolation"])) {
         $item["has_interpolations"] = getYN($values[0]["interpolation"]);
         $item["interpolations"] = $values;
     } else {
@@ -155,6 +156,7 @@ function build_item($manuscript)
     } else {
         $item["image"] = "no_image.jpg";
     }
+    //print_r($item);
     return $item;
 }
 

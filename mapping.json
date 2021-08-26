@@ -168,6 +168,14 @@
           }
         }
       },
+      "is_fragment": {
+        "type": "text",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
       "part": {
         "type": "text",
         "copy_to": "fulltext",
