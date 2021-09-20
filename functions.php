@@ -80,7 +80,7 @@ function build_item($manuscript)
     $item["authors"] = $db->get_authors($id);
     $item["absolute_places"] = $db->get_absolute_places($id);
     $item["scaled_places"] = $db->get_scaled_places($id);
-    $item["scaled_dates"] = simplify_dates($db->get_scaled_dates($id));
+    $item["scaled_dates"] = simplify_dates($db->get_scaled_dates($id), $manuscript["accepted_date"]);
     $item["designed_as"] = $db->get_designed_as($id);
     $item["page_dimensions"] = $db->get_page_dimensions($id);
     //$item["physical_state"] = $db->get_physical_state($id);
@@ -177,11 +177,12 @@ function getFragment($value) {
 }
 
 
-function simplify_dates($results) {
+function simplify_dates($results, $label) {
     $retArray = array();
     foreach ($results as $result) {
         $buffer = array();
         $buffer["date"] = oneCentury($result["date"]);
+        $buffer["label"] = $label;
         $tmp = dateRanges($result["numerical_date"]);
         if (count($tmp) == 2) {
             $buffer["lower"] = $tmp["lower"];

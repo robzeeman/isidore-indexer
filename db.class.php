@@ -11,7 +11,7 @@ class db
 
     function get_manuscripts($count)
     {
-        $result = pg_query($this->con, "SELECT id, shelfmark, bischoff, cla, material_type, no_of_folia, page_height_min, page_width_min, additional_content_scaled, physical_state_scaled physical_state, columns,  REPLACE (innovations, '&amp;', '&') as innovations, collection_larger_unit FROM manuscripts LIMIT $count");
+        $result = pg_query($this->con, "SELECT id, shelfmark, bischoff, cla, material_type, no_of_folia, accepted_date, page_height_min, page_width_min, additional_content_scaled, physical_state_scaled physical_state, columns,  REPLACE (innovations, '&amp;', '&') as innovations, collection_larger_unit FROM manuscripts LIMIT $count");
         return $this->ass_arr($result);
     }
 
@@ -67,8 +67,12 @@ class db
     }
 
     function getAmountDigitized($id) {
-        $result = $this->ass_arr(pg_query($this->con, "select count(*) as aantal from url where m_id = '$id' AND url_images IS NOT NULL"));
-        return $result[0]["aantal"];
+        $result = $this->ass_arr(pg_query($this->con, "select count(*) as aantal from url where m_id = '$id' AND url_images <> ''"));
+        if ($result[0]["aantal"] > 0) {
+            return "yes";
+        } else {
+            return "no";
+        }
     }
 
     function get_script($id)

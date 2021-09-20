@@ -97,7 +97,7 @@
       "interpolations": {
         "type": "nested",
         "properties": {
-          "place": {
+          "interpolation": {
             "type": "text",
             "copy_to": "fulltext",
             "fields": {
@@ -119,7 +119,7 @@
       "annotations": {
         "type": "nested",
         "properties": {
-          "place": {
+          "amount": {
             "type": "text",
             "copy_to": "fulltext",
             "fields": {
@@ -141,7 +141,7 @@
       "diagrams": {
         "type": "nested",
         "properties": {
-          "place": {
+          "diagram_type": {
             "type": "text",
             "copy_to": "fulltext",
             "fields": {
@@ -280,6 +280,9 @@
           },
           "upper": {
             "type": "integer"
+          },
+          "label": {
+            "type": "text"
           }
         }
       },
