@@ -168,7 +168,7 @@ class db
     }
 
     function getAnnotations($id) {
-        $result = pg_query($this->con, "SELECT amount FROM annotations WHERE m_id = '$id'");
+        $result = pg_query($this->con, "SELECT amount, language FROM annotations WHERE m_id = '$id'");
         return $this->ass_arr($result);
     }
 

@@ -131,6 +131,15 @@
                 "type": "keyword"
               }
             }
+          },
+          "language": {
+            "type": "text",
+            "copy_to": "fulltext",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
           }
         }
       },
