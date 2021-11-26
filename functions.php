@@ -1,5 +1,5 @@
 <?php
-define('IMG_DIR', "/Users/robzeeman/Documents/DI/isidore/images/target/");
+define('IMG_DIR', "/Library/WebServer/Documents/isidore_service/img/thumbs/");
 
 $db = new db();
 $files = scandir(IMG_DIR);
@@ -83,6 +83,7 @@ function build_item($manuscript)
     $item["scaled_dates"] = simplify_dates($db->get_scaled_dates($id), $manuscript["accepted_date"]);
     $item["designed_as"] = $db->get_designed_as($id);
     $item["page_dimensions"] = $db->get_page_dimensions($id);
+    $item["additional_observations"] = $manuscript["additional_observations"];
     //$item["physical_state"] = $db->get_physical_state($id);
     $item["physical_state"] = $manuscript["physical_state"];
     $item["layout"] = get_layout($manuscript["columns"]);

@@ -37,6 +37,10 @@
       "page_width_min": {
         "type": "text"
       },
+      "additional_observations": {
+        "type": "text",
+        "copy_to": "fulltext"
+      },
       "books_latin": {
         "type": "text",
         "copy_to": "fulltext",
@@ -186,7 +190,8 @@
         }
       },
       "additional_content_scaled": {
-        "type": "text"
+        "type": "text",
+        "copy_to": "fulltext"
       },
       "current_places": {
         "type": "nested",
@@ -282,7 +287,8 @@
             "type": "integer"
           },
           "label": {
-            "type": "text"
+            "type": "text",
+            "copy_to": "fulltext"
           }
         }
       },

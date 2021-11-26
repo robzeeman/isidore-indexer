@@ -11,7 +11,7 @@ class db
 
     function get_manuscripts($count)
     {
-        $result = pg_query($this->con, "SELECT id, shelfmark, bischoff, cla, material_type, no_of_folia, accepted_date, page_height_min, page_width_min, additional_content_scaled, physical_state_scaled physical_state, columns,  REPLACE (innovations, '&amp;', '&') as innovations, collection_larger_unit FROM manuscripts LIMIT $count");
+        $result = pg_query($this->con, "SELECT id, shelfmark, bischoff, cla, material_type, no_of_folia, accepted_date, page_height_min, page_width_min, additional_observations, additional_content_scaled, physical_state_scaled physical_state, columns,  REPLACE (innovations, '&amp;', '&') as innovations, collection_larger_unit FROM manuscripts LIMIT $count");
         return $this->ass_arr($result);
     }
 
@@ -173,8 +173,16 @@ class db
     }
 
     function getInterpolations($id) {
-        $result = pg_query($this->con, "SELECT interpolation FROM interpolations WHERE m_id = '$id'");
-        return $this->ass_arr($result);
+        $retArray = array();
+        $result = $this->ass_arr(pg_query($this->con, "SELECT interpolation FROM interpolations WHERE m_id = '$id'"));
+        foreach ($result as $item) {
+            if (strlen($item["interpolation"]) > 40) {
+                $retArray[] = array("interpolation" => substr($item["interpolation"], 0, 40) . "...");
+            } else {
+                $retArray[] = $item;
+            }
+        }
+        return $retArray;
     }
 
     function get_page_dimensions($id)
