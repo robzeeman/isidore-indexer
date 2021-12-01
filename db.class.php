@@ -172,6 +172,11 @@ class db
         return $this->ass_arr($result);
     }
 
+    function getRelations($id) {
+        $result = pg_query($this->con, "SELECT reason FROM relationships WHERE m_id = '$id'");
+        return $this->ass_arr($result);
+    }
+
     function getInterpolations($id) {
         $retArray = array();
         $result = $this->ass_arr(pg_query($this->con, "SELECT interpolation FROM interpolations WHERE m_id = '$id'"));

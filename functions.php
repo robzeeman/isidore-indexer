@@ -97,8 +97,10 @@ function build_item($manuscript)
     $aantal = $db->getRelAmount($id);
     if ($aantal == 0) {
         $item["has_relations"] = 'no';
+        $item["relations"] = array();
     } else {
         $item["has_relations"] = 'yes';
+        $item["relations"] = $db->getRelations($id);
     }
 
     // Fragment (y/n)
@@ -150,6 +152,7 @@ function build_item($manuscript)
     }
 
     $item["part"] = is_available($manuscript["collection_larger_unit"]);
+    $item["part_name"] = $manuscript["collection_larger_unit"];
     $item["digitized"] = is_digitized($id);
     $item["current_places"] = $db->get_current_places($id);
     if (in_array($id . ".jpg", $files)) {
