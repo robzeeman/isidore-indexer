@@ -105,7 +105,7 @@ class db
 
     function get_authors($id)
     {
-        $result = pg_query($this->con, "SELECT full_name_1 as author FROM manuscripts_viaf WHERE id='$id'");
+        $result = pg_query($this->con, "SELECT DISTINCT CASE WHEN full_name_2 = '' THEN full_name_1 ELSE full_name_2 END AS author FROM manuscripts_viaf WHERE id = '$id'");
         return $this->ass_arr($result);
     }
 
@@ -173,7 +173,7 @@ class db
     }
 
     function getRelations($id) {
-        $result = pg_query($this->con, "SELECT reason FROM relationships WHERE m_id = '$id'");
+        $result = pg_query($this->con, "SELECT DISTINCT reason FROM relationships WHERE m_id = '$id'");
         return $this->ass_arr($result);
     }
 
