@@ -38,19 +38,19 @@ function put_mapping()
 }
 
 
-function publish($passage, $url)
+function publish($doc, $url)
 {
-    $json_struc = json_encode($passage);
+    $json_struc = json_encode($doc);
     $options = array('Content-type: application/json', 'Content-Length: ' . strlen($json_struc));
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $options);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $json_struc);
-    //curl_setopt($ch, CURLOPT_VERBOSE, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+    curl_setopt($ch, CURLOPT_USERPWD, "isidore:wN9Z0DUEtAiddZB4kKNcAw3WQtn3nTx7w");
     $response = curl_exec($ch);
     echo $response;
     curl_close($ch);
-    //echo "$id indexed\n";
 }
 
 function indexManuscripts($count)
@@ -117,8 +117,13 @@ function build_item($manuscript)
     // Easter tables
     $values = $db->getEasterTables($id);
     if (isset($values[0]["easter_table_type"])) {
-        $item["has_easter_tables"] = getYN($values[0]["easter_table_type"]);
-        $item["easter_tables"] = $values;
+        if ($values[0]["easter_table_type"] !== 'absent' && $values[0]["folia"] !== "") {
+            $item["has_easter_tables"] = "yes";
+            $item["easter_tables"] = $values;
+        } else {
+            $item["has_easter_tables"] = "no";
+            $item["easter_tables"] = array();
+        }
     } else {
         $item["has_easter_tables"] = "no";
         $item["easter_tables"] = array();

@@ -163,7 +163,7 @@ class db
     }
 
     function getEasterTables($id) {
-        $result = pg_query($this->con, "SELECT easter_table_type FROM easter_table WHERE m_id = '$id'");
+        $result = pg_query($this->con, "SELECT easter_table_type, folia FROM easter_table WHERE m_id = '$id'");
         return $this->ass_arr($result);
     }
 
