@@ -33,8 +33,11 @@ function put_mapping()
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
     curl_setopt($ch, CURLOPT_VERBOSE, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $mapping);
-    curl_exec($ch);
-    echo "Index mapping sent.\n";
+    if (curl_exec($ch))  {
+        echo "Index mapping sent.\n";
+    } else {
+        echo curl_error($ch);
+}
 }
 
 
@@ -61,7 +64,7 @@ function indexManuscripts($count)
     foreach ($manuscripts as $manuscript) {
         $item = build_item($manuscript);
         publish($item, INDEX_URL);
-        //print_r($item);
+        print_r($item);
     }
 }
 
